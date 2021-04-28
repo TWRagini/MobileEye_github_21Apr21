@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
+
+    defaultConfig {
+        applicationId "com.example.tw.mobileeye"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "TWP5V5.4"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:23.4.0'
+    compile files('libs/mail.jar')
+    compile files('libs/activation.jar')
+    compile files('libs/additionnal.jar')
+    compile files('libs/commons-net.jar')
+    compile 'com.google.android.gms:play-services:10.2.0'
+}

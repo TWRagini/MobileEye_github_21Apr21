@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.tw.mobileeye" >
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.NETWORK" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"
+        android:sharedUserId="android.uid.system"/>
+    <protected-broadcast android:name="com.motorola.motocare.INTENT_TRIGGER" />
+
+    <application
+        android:name=".GlobalVariable"
+        android:allowBackup="true"
+        android:icon="@mipmap/mobileeye"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:exported="false"
+        android:usesCleartextTraffic="true"
+        android:sharedUserId="android.uid.system"
+        android:theme="@style/AppTheme" >
+
+        <service android:name=".TimeForCall2Features" />
+        <service android:name=".SendToStampsTransmission" />
+        <service android:name=".CallToNmeaListener" />
+        <service android:name=".StampsTransmission" />
+        <service android:name=".GenrateSIandNG" />
+        <service android:name=".UpdateRemoteParameter" />
+
+
+        <receiver
+            android:name=".BootComplete"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".AutoStartUp" />
+        <activity android:name=".MainActivity"/> <!--android:theme="@style/Theme.Transparent"-->>
+
+        <activity android:name=".StartActivity"> <!--android:theme="@style/Theme.Transparent"-->>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:process=":remote" android:name=".AppStartOnFixedTimeReciever" />
+
+        <activity android:name=".JRMTestingActivity" />
+        <service android:name=".JRMService" />
+
+        <receiver android:name=".GpsLocationReceiver">
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
